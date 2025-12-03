@@ -43,11 +43,11 @@ function Review() {
     if (index > 0) setIndex((cur) => cur - 1);
   }
   function nextReview() {
-    if (index < review.length) setIndex((cur) => cur + 1);
+    if (index < review.length - 1) setIndex((cur) => cur + 1);
   }
   function randomReview() {
     const randomIndex = Math.floor(Math.random() * review.length);
-    console.log(randomIndex);
+
     setIndex(randomIndex);
   }
   return (
@@ -67,17 +67,16 @@ function Review() {
       <p className="job">{person.job}</p>
 
       <p className="info">{person.text}</p>
-      <div className="button-container">
-        <button className="prev-btn" onClick={prevReview}>
-          Prev
-        </button>
-        <button className="next-btn" onClick={nextReview}>
-          Next
-        </button>
-      </div>
+
+      <button className="prev-btn" onClick={prevReview}>
+        Prev
+      </button>
+      <button className="next-btn" onClick={nextReview}>
+        Next
+      </button>
 
       <button className="random-btn" onClick={randomReview}>
-        Surprise Me
+        surprise me
       </button>
     </div>
   );
