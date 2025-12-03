@@ -39,17 +39,32 @@ function Review() {
   const [index, setIndex] = useState(0);
 
   const person = review[index];
-  function prevReview() {
-    if (index > 0) setIndex((cur) => cur - 1);
+  function checkNumber(num) {
+    if (num > review.length - 1) return 0;
+    if (num < 0) return review.length - 1;
+    return num;
   }
-  function nextReview() {
-    if (index < review.length - 1) setIndex((cur) => cur + 1);
-  }
-  function randomReview() {
-    const randomIndex = Math.floor(Math.random() * review.length);
 
+  const nextReview = () => {
+    setIndex((curIndex) => {
+      return checkNumber(curIndex + 1);
+    });
+  };
+
+  const prevReview = () => {
+    setIndex((curIndex) => {
+      return checkNumber(curIndex - 1);
+    });
+  };
+
+  const randomReview = () => {
+    let randomIndex = Math.floor(Math.random() * review.length);
+    if (randomIndex === index) {
+      randomIndex = checkNumber(index + 1);
+    }
     setIndex(randomIndex);
-  }
+  };
+
   return (
     <div className="review">
       <img
